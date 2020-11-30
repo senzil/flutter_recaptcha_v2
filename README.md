@@ -27,23 +27,23 @@ RecaptchaV2(
 	},
 	onVerifiedSuccessfully: (success) {
 		setState(() {
-		if (success) {
-			// You've been verified successfully.
-		} else {
-			// "Failed to verify.
-		}
+            if (success) {
+                // You've been verified successfully.
+            } else {
+                // "Failed to verify.
+            }
 		});
 	},
 ),
 ```
 
 The `RecaptchaV2` widget is hidden by default, you need to attach the `RecaptchaV2Controller` and call `show()` method when needed. Like this:
-```
+```dart
 recaptchaV2Controller.show();
 ```
 
 Manually hide it:
-```
+```dart
 recaptchaV2Controller.hide();
 ```
 
