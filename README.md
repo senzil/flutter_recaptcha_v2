@@ -15,7 +15,7 @@ Then test your API KEY at: https://recaptcha-flutter-plugin.firebaseapp.com/?api
 
 Put `RecaptchaV2` widget into your widget tree (Usually inside `Stack` widget), **make sure it's placed on top of the tree and block all the behind interactions**:
 
-```
+```dart
 RecaptchaV2Controller recaptchaV2Controller = RecaptchaV2Controller();
 ...
 RecaptchaV2(
