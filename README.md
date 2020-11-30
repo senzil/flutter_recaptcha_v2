@@ -19,21 +19,21 @@ Put `RecaptchaV2` widget into your widget tree (Usually inside `Stack` widget), 
 RecaptchaV2Controller recaptchaV2Controller = RecaptchaV2Controller();
 ...
 RecaptchaV2(
-	apiKey: "YOUR_API_KEY", // for enabling the reCaptcha
-	apiSecret: "YOUR_API_SECRET", // for verifying the responded token
-	controller: recaptchaV2Controller,
-	onVerifiedError: (err){
-		print(err);
-	},
-	onVerifiedSuccessfully: (success) {
-		setState(() {
+    apiKey: "YOUR_API_KEY", // for enabling the reCaptcha
+    apiSecret: "YOUR_API_SECRET", // for verifying the responded token
+    controller: recaptchaV2Controller,
+    onVerifiedError: (err){
+        print(err);
+    },
+    onVerifiedSuccessfully: (success) {
+        setState(() {
             if (success) {
                 // You've been verified successfully.
             } else {
                 // "Failed to verify.
             }
-		});
-	},
+        });
+    },
 ),
 ```
 
