@@ -15,8 +15,6 @@ class RecaptchaV2 extends StatefulWidget {
   final ValueChanged<bool> onVerifiedSuccessfully;
   final ValueChanged<String> onVerifiedError;
 
-  bool is_CancelBottom = False;
-
   RecaptchaV2({
     this.apiKey,
     this.apiSecret,
@@ -35,6 +33,7 @@ class RecaptchaV2 extends StatefulWidget {
 class _RecaptchaV2State extends State<RecaptchaV2> {
   RecaptchaV2Controller controller;
   WebViewController webViewController;
+  bool _visibleCancelBottom = false;
 
   void verifyToken(String token) async {
     String url = "https://www.google.com/recaptcha/api/siteverify";
@@ -121,9 +120,10 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
                 onWebViewCreated: (_controller) {
                   webViewController = _controller;
                 },
+              ),
               Visibility(
+                visible: _visibleCancelBottom,
                 child: Align(
-                  visible: is_CancelBottom,
                   alignment: Alignment.bottomCenter,
                   child: SizedBox(
                     height: 60,
@@ -132,7 +132,7 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
                       children: <Widget>[
                         Expanded(
                           child: RaisedButton(
-                            child: Text(S.of("CANCEL CAPTCHA"))),
+                            child: Text("CANCEL CAPTCHA"),
                             onPressed: () {
                               controller.hide();
                             },
@@ -141,10 +141,10 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
                       ],
                     ),
                 ),
-              )
+              ),
 
               ),
-              ),
+
             ],
           )
         : Container();
