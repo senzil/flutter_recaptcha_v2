@@ -9,21 +9,24 @@ import 'dart:convert';
 class RecaptchaV2 extends StatefulWidget {
   final String apiKey;
   final String apiSecret;
-  final String pluginURL = "https://recaptcha-flutter-plugin.firebaseapp.com/";
+  final String pluginURL;
   final RecaptchaV2Controller controller;
 
   final ValueChanged<bool> onVerifiedSuccessfully;
   final ValueChanged<String> onVerifiedError;
 
+  bool is_CancelBottom = False;
+
   RecaptchaV2({
     this.apiKey,
     this.apiSecret,
+    this.pluginURL: "https://recaptcha-flutter-plugin.firebaseapp.com/",
     RecaptchaV2Controller controller,
     this.onVerifiedSuccessfully,
     this.onVerifiedError,
   })  : controller = controller ?? RecaptchaV2Controller(),
-        assert(apiKey != null, "Google ReCaptcha API KEY is missing."),
-        assert(apiSecret != null, "Google ReCaptcha API SECRET is missing.");
+    assert(apiKey != null, "Google ReCaptcha API KEY is missing."),
+    assert(apiSecret != null, "Google ReCaptcha API SECRET is missing.");
 
   @override
   State<StatefulWidget> createState() => _RecaptchaV2State();
@@ -118,25 +121,29 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
                 onWebViewCreated: (_controller) {
                   webViewController = _controller;
                 },
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: SizedBox(
-                  height: 60,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: <Widget>[
-                      Expanded(
-                        child: RaisedButton(
-                          child: Text("CANCEL RECAPTCHA"),
-                          onPressed: () {
-                            controller.hide();
-                          },
+              Visibility(
+                child: Align(
+                  visible: is_CancelBottom,
+                  alignment: Alignment.bottomCenter,
+                  child: SizedBox(
+                    height: 60,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        Expanded(
+                          child: RaisedButton(
+                            child: Text(S.of("CANCEL CAPTCHA"))),
+                            onPressed: () {
+                              controller.hide();
+                            },
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
                 ),
+              )
+
+              ),
               ),
             ],
           )
