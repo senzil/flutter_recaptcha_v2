@@ -9,11 +9,19 @@ This plugin only supports **Google ReCAPTCHA V2** (not V3)
 
 Obtain your own key & secret here: https://www.google.com/recaptcha
 
-**!!! Remember to add this domain into the reCaptcha setting: recaptcha-flutter-plugin.firebaseapp.com**
+**!!! Remember to add this domain into the reCaptcha setting or add your own domain: recaptcha-flutter-plugin.firebaseapp.com**
 
 Then test your API KEY at: https://recaptcha-flutter-plugin.firebaseapp.com/?api_key=API_KEY
 
+If you want the Cancel Button with the captcha controller set the boolean to True:
+	bool _visibleCancelBottom = true;
+**otherwise it won't show**
+
 Put `RecaptchaV2` widget into your widget tree (Usually inside `Stack` widget), **make sure it's placed on top of the tree and block all the behind interactions**:
+
+You can change the plugin url for the captcha domain insde the RecaptchaV2 or leave it by default non adding the line: 
+	pluginURL: "https://mypersonalurl.com". 
+**if you have setted your own domain specify the domain used**
 
 ```dart
 RecaptchaV2Controller recaptchaV2Controller = RecaptchaV2Controller();
@@ -21,7 +29,8 @@ RecaptchaV2Controller recaptchaV2Controller = RecaptchaV2Controller();
 RecaptchaV2(
     apiKey: "YOUR_API_KEY", // for enabling the reCaptcha
     apiSecret: "YOUR_API_SECRET", // for verifying the responded token
-    controller: recaptchaV2Controller,
+    pluginURL: "https://mypersonalurl.com",
+	controller: recaptchaV2Controller,
     onVerifiedError: (err){
         print(err);
     },
@@ -49,32 +58,3 @@ recaptchaV2Controller.hide();
 
 That's it!
 
-## Upgrades
-
-Now you can change the plugin url or leave it by default: `https://recaptcha-flutter-plugin.firebaseapp.com/`
-
-Example:
-
-```
-RecaptchaV2(
-	...
-	pluginURL: "https://mypersonalurl.com"
-	...
-	onVerifiedError: (err){
-		print(err);
-	},
-	onVerifiedSuccessfully: (success) {
-		setState(() {
-		if (success) {
-			// You've been verified successfully.
-		} else {
-			// "Failed to verify.
-		}
-		});
-	},
-),
-
-```
-If you want the Cancel Button with the captcha controller set the boolean to True, **otherwise it won't show**
-
-bool _visibleCancelBottom = true;
