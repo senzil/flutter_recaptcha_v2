@@ -48,3 +48,33 @@ recaptchaV2Controller.hide();
 ```
 
 That's it!
+
+## Upgrades
+
+Now you can change the plugin url or leave it by default: `https://recaptcha-flutter-plugin.firebaseapp.com/`
+
+Example:
+
+```
+RecaptchaV2(
+	...
+	pluginURL: "https://mypersonalurl.com"
+	...
+	onVerifiedError: (err){
+		print(err);
+	},
+	onVerifiedSuccessfully: (success) {
+		setState(() {
+		if (success) {
+			// You've been verified successfully.
+		} else {
+			// "Failed to verify.
+		}
+		});
+	},
+),
+
+```
+If you want the Cancel Button with the captcha controller set the boolean to True, **otherwise it won't show**
+
+bool _visibleCancelBottom = true;
