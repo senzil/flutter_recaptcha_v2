@@ -16,14 +16,25 @@ Then test your API KEY at: https://recaptcha-flutter-plugin.firebaseapp.com/?api
 Put `RecaptchaV2` widget into your widget tree (Usually inside `Stack` widget), **make sure it's placed on top of the tree and block all the behind interactions**:
 
 You can change the plugin url for the captcha domain insde the RecaptchaV2 or leave it by default non adding the line: 
-	`pluginURL: "https://mypersonalurl.com"`. **if you have setted your own domain, specify the domain used**
+
+```dart
+pluginURL: "https://mypersonalurl.com"
+```
+
+**if you have setted your own domain, specify the domain used**
 
 
 To show the Cancel Button with the captcha controller set the boolean to `true`:
-	`visibleCancelBottom: true,` **otherwise it won't appear**
+```dart
+visibleCancelBottom: true
+```
+
+ **otherwise it won't appear**
 
 Set the Text for the Cancel buttom or leave it by default:
-	`textCancelButtom: "CANCEL CAPTCHA",`
+```dart
+textCancelButtom: "CANCEL CAPTCHA"
+```
 
 ```dart
 RecaptchaV2Controller recaptchaV2Controller = RecaptchaV2Controller();
